@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-configmap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-configmap
+  template:
+    metadata:
+      labels:
+        app: springboot-configmap
+    spec:
+      containers:
+        - name: springboot-configmap
+          image: springboot-configmap:1.0.4 # Replace with your Docker image
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ENV_MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: env.message
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config   # Mount ConfigMap as volume at /config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: app-config

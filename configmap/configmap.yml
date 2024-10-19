@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  env.message: "This is an environment-specific message from ConfigMap"
+  app.property1: "This is a value of property 1 read from config mounted as a volume"
+  app.property2: "This is a value of property 2 read from config mounted as a volume"

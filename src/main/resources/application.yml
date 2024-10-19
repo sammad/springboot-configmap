@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: springboot-configmap
+  config:
+    #import: file:D:\\Work_Related\\dev\\configmap-springboot\\external-config\\ext-config.yml
+    import:
+     - "/external-config/ext-config.yml"
+     - "configtree:/config/"
+
+apigee:
+  mttr:
+    ttl: 20sec
+
+logging:
+  level:
+    org:
+      springframework: INFO
+env:
+  message: ${ENV_MESSAGE:Default environment message}
+
+
